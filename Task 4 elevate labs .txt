@@ -1,0 +1,65 @@
+﻿Task 4 — Setup and Use a Firewall on Windows
+Student: Syed Mujahed Ali
+Project: Task 4 Elevate labs  — Setup and Use a Firewall on Windows
+ Tools: Windows 10/11, Windows Defender Firewall with Advanced Security, Command Prompt, Telnet Client (for testing)
+
+
+Objective
+Configure and test basic firewall rules on Windows to block and then remove a rule for a specific port (Telnet — TCP 23). Demonstrate understanding of inbound/outbound rules and how a firewall filters traffic.
+
+
+Activities and Implementation
+1. Open Firewall Configuration Tool
+* Action: Opened Windows Defender Firewall with Advanced Security.
+
+* How: Pressed Win + R, typed wf.msc, and pressed Enter.
+
+
+2. List Current Firewall Rules
+   * Action: Navigated to Inbound Rules and Outbound Rules to review existing rules 
+   * How: Left panel → Inbound Rules 
+3. Add a Rule to Block Inbound Traffic on Port 23 (Telnet)
+   * Action: Created a new inbound rule to block TCP port 23.
+
+   * Steps followed (GUI):
+
+      1. In Inbound Rules → clicked New Rule… on the right pane.
+
+      2. Selected Port → Next.
+
+      3. Selected TCP and entered 23 in Specific local ports → Next.
+
+      4. Selected Block the connection → Next.
+
+      5. Applied to Domain, Private, Public → Next.
+
+      6. Named the rule: Block Telnet Port 23 → Finish.
+4. Test the Block Rule
+         * Action: Verified that the Telnet connection to localhost on port 23 was blocked.
+
+         * Methods used:
+
+            * Enabled Telnet Client (Control Panel → Programs → Turn Windows features on or off → Telnet Client).
+Command Prompt test: telnet localhost 23
+result: connection failed / could not open connection to host. 
+
+
+
+
+5. (Skipped) Add Rule to Allow SSH (Port 22)
+            * Note: Step 5 in the original task mentions allowing SSH (port 22) — this is specific to Linux/UFW. Since this task was completed on Windows, this step was intentionally skipped.
+
+6. Remove the Test Block Rule
+               * Action: Removed the test rule to restore original state.
+
+               * How: In Inbound Rules, right-clicked Block Telnet Port 23 → Delete → confirmed deletion.
+7. Documented GUI Steps / Commands Used
+GUI steps (summary):
+                  1. Win + R → wf.msc → Enter.
+
+                  2. Inbound Rules → New Rule → Port → TCP → 23 → Block the connection → Domain/Private/Public → Name & Finish.
+
+                  3. Test via Telnet 
+                  4. Delete test rule.
+8. How the Firewall Filters Traffic (Summary)
+A firewall enforces a set of rules to allow or deny network traffic. Each incoming or outgoing packet/connection attempt is evaluated against the rule set. If the packet matches an allow rule it is permitted; if it matches a block rule it is dropped or rejected. Rules can be based on port, protocol (TCP/UDP), IP addresses, application path, and network profile (Domain/Private/Public). Proper rule configuration restricts exposure of services, reduces attack surface, and helps prevent unauthorized access.
